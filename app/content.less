@@ -1,5 +1,21 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./especial.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
 body {
     div {
-        background: #33ff00
+        background: #33ff00;
+        font-family: 'MyFont';
+        font-size: 30px;
+        &:after {
+            content: ' ';
+            display: block;
+            height: 100px;
+            width: 100px;
+            background: url('./iicon-morepeople.png');
+        }
     }
 }

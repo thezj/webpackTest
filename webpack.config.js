@@ -29,6 +29,19 @@ module.exports = {
                 use: extractContent.extract({
                     use: ['css-loader', 'less-loader']
                 })
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: ['file-loader']
+            }
+            ,
+            {
+                test: /\.(woff)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(mp4)$/,
+                use: ['file-loader']
             }
         ]
     },
