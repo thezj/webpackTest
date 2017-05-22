@@ -13,17 +13,13 @@ import ivideoasset from './video.mp4'
 
 function component() {
     var element = document.createElement('div')
-
-    /* 需要引入 lodash，下一行才能正常工作 */
     element.innerHTML = _.join(['Hello', 'webpack'], ' ') + '<br>Time:' + moment().format('YYYY/MM/DD,h:mm:ss')
-
     let ivideo = document.createElement('video')
     ivideo.setAttribute('controls', '')
     let isource = document.createElement('source')
     isource.setAttribute('src', ivideoasset)
     ivideo.appendChild(isource)
     element.appendChild(ivideo)
-
     return element
 }
 
