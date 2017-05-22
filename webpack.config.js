@@ -33,8 +33,7 @@ module.exports = {
             {
                 test: /\.(png|jpg|gif)$/,
                 use: ['file-loader']
-            }
-            ,
+            },
             {
                 test: /\.(woff)$/,
                 use: ['file-loader']
@@ -42,6 +41,10 @@ module.exports = {
             {
                 test: /\.(mp4)$/,
                 use: ['file-loader']
+            },
+            {
+                test: /\.vue$/,
+                use: ['vue-loader']
             }
         ]
     },
@@ -61,5 +64,10 @@ module.exports = {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
         port: 9000
+    },
+    resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
     }
 };

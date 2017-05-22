@@ -9,6 +9,9 @@ body div {
   font-family: 'MyFont';
   font-size: 30px;
 }
+body div:first-child {
+  height: 1000px;
+}
 body div:after {
   content: ' ';
   display: block;

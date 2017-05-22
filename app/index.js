@@ -1,5 +1,8 @@
 import _ from 'lodash'
 import moment from 'moment'
+//
+import Vue from 'vue'
+import indexVue from './index.vue'
 import './index.less'
 import './content.less'
 import ivideoasset from './video.mp4'
@@ -25,3 +28,16 @@ function component() {
 }
 
 document.body.appendChild(component())
+
+let vueRootDom = document.createElement('div')
+vueRootDom.setAttribute('id', 'app')
+document.body.appendChild(vueRootDom)
+
+
+let VMRoot = new Vue({
+    el: '#app',
+    template: '<index-Vue/>',
+    components: {
+        indexVue
+    }
+})

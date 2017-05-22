@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url(7f30d9a7072b207ff9fa04db4a94ba0c.woff) format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
 body div {
   background: #33ff00;
+  font-family: 'MyFont';
+  font-size: 30px;
+}
+body div:after {
+  content: ' ';
+  display: block;
+  height: 100px;
+  width: 100px;
+  background: url(ffe7b2778137de921b12d68bea2ed2fe.png);
 }
