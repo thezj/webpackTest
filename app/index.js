@@ -14,7 +14,7 @@ import ivideoasset from './video.mp4'
 function component() {
     var element = document.createElement('div')
     element.innerHTML = _.join(['Hello', 'webpack'], ' ') + '<br>Time:' + moment().format('YYYY/MM/DD,h:mm:ss')
-    let ivideo = document.createElement('video')
+    let ivideo = document.createElement('video');
     ivideo.setAttribute('controls', '')
     let isource = document.createElement('source')
     isource.setAttribute('src', ivideoasset)
