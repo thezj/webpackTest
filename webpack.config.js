@@ -3,61 +3,53 @@ var path = require('path');
 var webpack = require('webpack');
 //文件单独输出
 var extractText = require('extract-text-webpack-plugin');
-let extractIndexLexx = new extractText('index.css')
-let extractContent = new extractText('content.css')
+let extractIndexLess = new extractText('index.css')
 //html单独输出
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
+    //入口js
     entry: {
-        main: './app/index.js',
-        moment: 'moment',
-        lodash: 'lodash'
+        main: './app/index.js'
     },
+    //输出配置
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, './temporaryServer')
     },
+    //模块
     module: {
-        rules: [{
-                test: /index\.less$/,
-                use: extractIndexLexx.extract({
+        rules: [
+            {
+                test:/\.(woff|ttf)$/,
+                use:['file-loader']
+            },
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            },
+            {
+                test: /\.less$/,
+                use: extractIndexLess.extract({
                     use: ['css-loader', 'less-loader']
                 })
-            },
-            {
-                test: /[^d][^e][^x]\.less$/,
-                use: extractContent.extract({
-                    use: ['css-loader', 'less-loader']
-                })
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: ['file-loader']
-            },
-            {
-                test: /\.(woff)$/,
-                use: ['file-loader']
-            },
-            {
-                test: /\.(mp4)$/,
-                use: ['file-loader']
             },
             {
                 test: /\.vue$/,
                 use: ['vue-loader']
             },
             {
-                test:/\.js$/,
-                exclude:/node_modules/,
-                use:{
-                    loader:'babel-loader'
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
                 }
             }
         ]
     },
+    //插件
     plugins: [
-        extractIndexLexx,
-        extractContent,
+        extractIndexLess,
         new HtmlWebpackPlugin({
             title: 'hello webpack!',
             filename: 'index.html',
@@ -67,8 +59,8 @@ module.exports = {
             name: 'common'
         })
     ],
+    //小型服务器
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
         compress: true,
         port: 9000
     },

@@ -1,6 +1,6 @@
 <template>
     <div>
-      index
+        <el-input v-model='num'></el-input>
     </div>
 </template>
 
@@ -8,6 +8,7 @@
 export default {
     data() {
         return {
+            num: 123
         }
     }
 }
