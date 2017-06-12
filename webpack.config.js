@@ -3,7 +3,6 @@ var path = require('path');
 var webpack = require('webpack');
 //文件单独输出
 var extractText = require('extract-text-webpack-plugin');
-let extractIndexLess = new extractText('index.css')
 //html单独输出
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -19,19 +18,15 @@ module.exports = {
     },
     //模块
     module: {
-        rules: [
-            {
-                test:/\.(woff|ttf)$/,
-                use:['file-loader']
+        rules: [{
+                test: /\.(woff|ttf)$/,
+                use: ['file-loader']
             },
             {
-                test:/\.css$/,
-                use:['style-loader','css-loader']
-            },
-            {
-                test: /\.less$/,
-                use: extractIndexLess.extract({
-                    use: ['css-loader', 'less-loader']
+                test: /\.css$/,
+                use: extractText.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
                 })
             },
             {
@@ -49,7 +44,7 @@ module.exports = {
     },
     //插件
     plugins: [
-        extractIndexLess,
+        new extractText("dependence.css"),
         new HtmlWebpackPlugin({
             title: 'hello webpack!',
             filename: 'index.html',
