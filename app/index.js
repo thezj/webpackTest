@@ -3,6 +3,7 @@ import VUE from 'vue'
 import VUERouter from 'vue-router'
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import './styleSheet/normal.less'
 //==================初始化一些模块==================
 VUE.use(VUERouter)
 VUE.use(elementUI)

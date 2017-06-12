@@ -19,14 +19,21 @@ module.exports = {
     //模块
     module: {
         rules: [{
-                test: /\.(woff|ttf)$/,
-                use: ['file-loader']
+                test: /\.(woff|ttf|png)$/,
+                //保留原始路径名称到输出目录
+                use: ['file-loader?name=[name].[ext]&outputPath=style/assets/&publicPath=/']
             },
             {
                 test: /\.css$/,
                 use: extractText.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
+                    fallback: 'style-loader',
+                    use: ['css-loader']
+                })
+            },
+            {
+                test: /\.less$/,
+                use: extractText.extract({
+                    use: ['css-loader', 'less-loader']
                 })
             },
             {
@@ -44,7 +51,7 @@ module.exports = {
     },
     //插件
     plugins: [
-        new extractText("dependence.css"),
+        new extractText("style/dependence.css"),
         new HtmlWebpackPlugin({
             title: 'hello webpack!',
             filename: 'index.html',
